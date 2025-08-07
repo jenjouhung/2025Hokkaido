@@ -17,6 +17,7 @@
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       color: #5a6c7d;
       line-height: 1.6;
+      font-size: 22px;
     }
 
     .container {
@@ -32,6 +33,7 @@
       border-radius: 15px;
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 2.2em;
     }
 
     .participants-section {
@@ -45,7 +47,7 @@
     .participants-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
+      font-size: 1.2em;
     }
 
     .participants-table th,
@@ -72,6 +74,7 @@
       border-radius: 15px;
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
     }
 
     .accommodation-section {
@@ -80,6 +83,7 @@
       padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
     }
 
     .accommodation-item {
@@ -96,6 +100,7 @@
       margin-bottom: 15px;
       overflow: hidden;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
     }
 
     .day-header {
@@ -146,9 +151,9 @@
     .activity-time {
       background: #d4a574;
       color: white;
-      padding: 5px 10px;
+      padding: 5px 16px;
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 1em;
       display: inline-block;
       margin-bottom: 8px;
       font-weight: bold;
@@ -165,7 +170,7 @@
       border: 1px solid #d4a574;
       border-radius: 5px;
       padding: 3px 8px;
-      font-size: 11px;
+      font-size: 1em;
       font-weight: bold;
       color: #8b7355;
       display: inline-block;
@@ -193,7 +198,7 @@
     .cost-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 11px;
+      font-size: 1.1em;
       background: rgba(255, 255, 255, 0.9);
       color: #5a6c7d;
     }
@@ -213,7 +218,7 @@
 
     .section-title {
       color: #5d4e75;
-      font-size: 18px;
+      font-size: 2em;
       font-weight: bold;
       margin-bottom: 15px;
       border-bottom: 2px solid #d4a574;
@@ -226,6 +231,7 @@
       padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      font-size: 1.1em;
     }
 
     .prep-item {
@@ -249,7 +255,7 @@
       border-radius: 10px;
       padding: 10px;
       text-align: center;
-      font-size: 12px;
+      font-size: 1em;
     }
   </style>
 </head>
@@ -271,9 +277,6 @@
             <th>團別</th>
             <th>姓名</th>
             <th>英文名</th>
-            <th>護照號</th>
-            <th>護照到期日</th>
-            <th>生日</th>
           </tr>
         </thead>
         <tbody>
@@ -281,65 +284,41 @@
             <td>A</td>
             <td>胡筱嵐</td>
             <td>HU, HSIAO-LAN</td>
-            <td>361756182</td>
-            <td>2033.03.03</td>
-            <td>1981.02.09</td>
           </tr>
           <tr>
             <td>A</td>
             <td>池秋霞</td>
             <td>CHIH, CHIU-HSIA</td>
-            <td>352252510</td>
-            <td>2029.05.17</td>
-            <td>1955.10.20</td>
           </tr>
           <tr>
             <td>A</td>
             <td>洪振洲</td>
             <td>HUNG, JEN-JOU</td>
-            <td>316372271</td>
-            <td>2028.01.30</td>
-            <td>1976.05.17</td>
           </tr>
           <tr>
             <td>A</td>
             <td>洪紹齊</td>
             <td>HONG, SHAO-QI</td>
-            <td>365885837</td>
-            <td>2029.04.26</td>
-            <td>2019.11.09</td>
           </tr>
           <tr>
             <td>B</td>
             <td>洪芊妮</td>
             <td>HONG, QIAN-NI</td>
-            <td>365493781</td>
-            <td>2034.03.25</td>
-            <td>2009.07.20</td>
           </tr>
           <tr>
             <td>B</td>
             <td>王昱鈞</td>
             <td>WANG, YU-CHUN</td>
-            <td>366224877</td>
-            <td>2034.05.31</td>
-            <td>1983.11.12</td>
           </tr>
           <tr>
             <td>B</td>
             <td>洪一梅</td>
             <td>HUNG, I-MEI</td>
-            <td>361956655</td>
-            <td>2033.03.22</td>
-            <td>1972.05.19</td>
           </tr>
           <tr>
             <td>B</td>
             <td>李伯儀</td>
             <td>LEE, PO-YI</td>
-            <td>361956658</td>
-            <td>2028.03.22</td>
-            <td>2010.05.05</td>
           </tr>
         </tbody>
       </table>
@@ -757,209 +736,13 @@
       </div>
     </div>
 
-    <!-- Cost Section -->
-    <div class="cost-section">
-      <h2 class="section-title">💰 費用預估</h2>
+  </div>
 
-      <h3>🎌 北海道部分 (每人)</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
-        <p>✈️ 機票 (平均)：17,000元</p>
-        <p>🏨 北海道住宿：14,000-17,000元</p>
-        <p>🚗 交通分攤：4,500元</p>
-        <p><strong>💸 總預估：36,000-39,000元</strong></p>
-      </div>
-
-      <h3>🏯 大阪部分 (每人) = 12,747元</h3>
-      <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
-        <p>✈️ 機票 (札幌-大阪)：5,562元</p>
-        <p>🚌 機場接駁：545元</p>
-        <p>🏨 住宿 3日：4,633元</p>
-        <p>🎢 環球影城：2,007元</p>
-      </div>
-
-      <h3>📊 詳細費用表</h3>
-      <table class="cost-table">
-        <thead>
-          <tr>
-            <th>項目</th>
-            <th>費用</th>
-            <th>洲</th>
-            <th>池</th>
-            <th>胡</th>
-            <th>齊</th>
-            <th>妮</th>
-            <th>梅</th>
-            <th>儀</th>
-            <th>鈞</th>
-            <th>付款人</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>A團機票</td>
-            <td>68,860</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>B團機票(札幌)</td>
-            <td>65,748</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪一梅</td>
-          </tr>
-          <tr>
-            <td>B團機票(大阪)</td>
-            <td>22,248</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪一梅</td>
-          </tr>
-          <tr>
-            <td>平岡格蘭迪爾</td>
-            <td>19,322</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>洞爺湖乃之風(1)</td>
-            <td>32,150</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>洞爺湖乃之風(2)</td>
-            <td>20,604</td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>美黛子之家-15</td>
-            <td>27,020</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>Vessel inn</td>
-            <td>20,739</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪振洲</td>
-          </tr>
-          <tr>
-            <td>日本橋藝術飯店</td>
-            <td>20,712</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪一梅</td>
-          </tr>
-          <tr>
-            <td>環球影城</td>
-            <td>10,035</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>洪一梅</td>
-          </tr>
-          <tr>
-            <td>A團租車Sienta</td>
-            <td>¥89,800</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>B團租車Sienta</td>
-            <td>¥88,800</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>✓</td>
-            <td>王昱鈞</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Footer -->
-    <div style="text-align: center; padding: 20px; color: #8b7355; font-style: italic;">
-      <p>🌸 祝大家旅途愉快！ 🗾</p>
-      <p>Safe travels & enjoy your adventure!</p>
-    </div>
+  <!-- Footer -->
+  <div style="text-align: center; padding: 20px; color: #8b7355; font-style: italic;">
+    <p>🌸 祝大家旅途愉快！ 🗾</p>
+    <p>Safe travels & enjoy your adventure!</p>
+  </div>
   </div>
 
   <script>
