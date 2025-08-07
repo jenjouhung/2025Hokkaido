@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>北海道旅遊規劃 🌸</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #5a6c7d;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 100%;
+      padding: 10px;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #a8caba 0%, #5d4e75 100%);
+      color: white;
+      text-align: center;
+      padding: 20px 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .participants-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .participants-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .participants-table th,
+    .participants-table td {
+      border: 1px solid #d4a574;
+      padding: 8px 4px;
+      text-align: center;
+    }
+
+    .participants-table th {
+      background: #d4a574;
+      color: white;
+      font-weight: bold;
+    }
+
+    .participants-table tr:nth-child(even) {
+      background: #faf8f3;
+    }
+
+    .flight-info {
+      background: linear-gradient(135deg, #b8a39a 0%, #8e7266 100%);
+      color: white;
+      padding: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .accommodation-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .accommodation-item {
+      background: #f9f5f1;
+      border-left: 4px solid #d4a574;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 0 10px 10px 0;
+    }
+
+    .day-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .day-header {
+      background: linear-gradient(135deg, #a8caba 0%, #5d4e75 100%);
+      color: white;
+      padding: 15px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .day-header:hover {
+      background: linear-gradient(135deg, #96b8a8 0%, #4a3f63 100%);
+    }
+
+    .day-content {
+      padding: 20px;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    .day-content.active {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .activity {
+      background: #f8f4f0;
+      border: 1px solid #e6d7c3;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .activity-time {
+      background: #d4a574;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      display: inline-block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .map-link {
+      text-decoration: none;
+      font-size: 18px;
+      margin-left: 5px;
+    }
+
+    .mapcode {
+      background: #e8ddd4;
+      border: 1px solid #d4a574;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #8b7355;
+      display: inline-block;
+      margin-left: 10px;
+    }
+
+    .toggle-icon {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.rotated {
+      transform: rotate(180deg);
+    }
+
+    .cost-section {
+      background: linear-gradient(135deg, #c8a882 0%, #a08660 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #5a6c7d;
+    }
+
+    .cost-table th,
+    .cost-table td {
+      border: 1px solid #d4a574;
+      padding: 6px 4px;
+      text-align: center;
+    }
+
+    .cost-table th {
+      background: #d4a574;
+      color: white;
+      font-weight: bold;
+    }
+
+    .section-title {
+      color: #5d4e75;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #d4a574;
+      padding-bottom: 5px;
+    }
+
+    .prep-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .prep-item {
+      background: #f5f2ef;
+      border-left: 4px solid #a8caba;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .specialties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .specialty-item {
+      background: #f8f4f0;
+      border: 2px solid #d4a574;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🌸 北海道旅遊規劃 🗾</h1>
+      <p>📅 2025年8月17日 - 8月26日</p>
+    </div>
+
+    <!-- Participants -->
+    <div class="participants-section">
+      <h2 class="section-title">👥 參與人清單 (8大1小)</h2>
+      <table class="participants-table">
+        <thead>
+          <tr>
+            <th>團別</th>
+            <th>姓名</th>
+            <th>英文名</th>
+            <th>護照號</th>
+            <th>護照到期日</th>
+            <th>生日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A</td>
+            <td>胡筱嵐</td>
+            <td>HU, HSIAO-LAN</td>
+            <td>361756182</td>
+            <td>2033.03.03</td>
+            <td>1981.02.09</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>池秋霞</td>
+            <td>CHIH, CHIU-HSIA</td>
+            <td>352252510</td>
+            <td>2029.05.17</td>
+            <td>1955.10.20</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>洪振洲</td>
+            <td>HUNG, JEN-JOU</td>
+            <td>316372271</td>
+            <td>2028.01.30</td>
+            <td>1976.05.17</td>
+          </tr>
+          <tr>
+            <td>A</td>
+            <td>洪紹齊</td>
+            <td>HONG, SHAO-QI</td>
+            <td>365885837</td>
+            <td>2029.04.26</td>
+            <td>2019.11.09</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>洪芊妮</td>
+            <td>HONG, QIAN-NI</td>
+            <td>365493781</td>
+            <td>2034.03.25</td>
+            <td>2009.07.20</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>王昱鈞</td>
+            <td>WANG, YU-CHUN</td>
+            <td>366224877</td>
+            <td>2034.05.31</td>
+            <td>1983.11.12</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>洪一梅</td>
+            <td>HUNG, I-MEI</td>
+            <td>361956655</td>
+            <td>2033.03.22</td>
+            <td>1972.05.19</td>
+          </tr>
+          <tr>
+            <td>B</td>
+            <td>李伯儀</td>
+            <td>LEE, PO-YI</td>
+            <td>361956658</td>
+            <td>2028.03.22</td>
+            <td>2010.05.05</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Flight Info -->
+    <div class="flight-info">
+      <h2 class="section-title">✈️ 航班資訊</h2>
+      <p><strong>🛫 8/17 (日) 出發</strong><br>
+        A、B團：華航 CI 130 台北→札幌 08:30→13:30</p>
+
+      <p><strong>🛬 8/23 (六) 分流</strong><br>
+        A團回台：華航 CI 131 札幌→台北 15:00→18:15<br>
+        B團大阪：日航 JL 2504 札幌→關西 11:50→14:00</p>
+
+      <p><strong>🛬 8/26 (二) B團回台</strong><br>
+        華航 CI 173 關西→台北 19:05→21:00</p>
+    </div>
+
+    <!-- Accommodation -->
+    <div class="accommodation-section">
+      <h2 class="section-title">🏨 住宿清單</h2>
+      <div class="accommodation-item">
+        <strong>📅 8/17-8/19 (2夜)</strong><br>
+        🏠 Grandir Hiraoka / 平岡格蘭迪爾<br>
+        <a href="https://maps.app.goo.gl/Fkc2M59YUo5g1oJe7" class="map-link">📍</a>
+      </div>
+      <div class="accommodation-item">
+        <strong>📅 8/19-8/20 (1夜)</strong><br>
+        🏨 洞爺乃之風<br>
+        <a href="https://maps.app.goo.gl/PEqy6qLV7qXP5kcE8" class="map-link">📍</a>
+      </div>
+      <div class="accommodation-item">
+        <strong>📅 8/20-8/22 (2夜)</strong><br>
+        🏠 美黛子之家 No 15<br>
+        <a href="https://maps.app.goo.gl/fpi3Q8EjQuapN3N16" class="map-link">📍</a>
+      </div>
+      <div class="accommodation-item">
+        <strong>📅 8/22-8/23 (1夜)</strong><br>
+        🏨 Vessel Inn札幌中島公園飯店<br>
+        <a href="https://maps.app.goo.gl/rPLjVb9jnEZ18k2i7" class="map-link">📍</a>
+      </div>
+      <div class="accommodation-item">
+        <strong>📅 8/23-8/26 (3夜)</strong><br>
+        🏨 日本橋藝術飯店 (B團)<br>
+        <a href="https://tw.trip.com/hotels/osaka-hotel-detail-67226105/dotonbori-higashi-art-hotel/"
+          class="map-link">📍</a>
+      </div>
+    </div>
+
+    <!-- Preparation -->
+    <div class="prep-section">
+      <h2 class="section-title">📋 行前準備</h2>
+
+      <div class="prep-item">
+        <h3>🗾 關於北海道</h3>
+        <p>北海道是日本最北的主要島嶼，面積約占全日本的22%，擁有壯麗的自然景觀與豐富的四季變化。夏季氣候涼爽（平均氣溫20-25°C），非常適合家庭旅遊與避暑。</p>
+      </div>
+
+      <div class="prep-item">
+        <h3>🎁 北海道特產</h3>
+        <div class="specialties">
+          <div class="specialty-item">🍫 白色戀人巧克力</div>
+          <div class="specialty-item">🍪 六花亭奶油夾心餅</div>
+          <div class="specialty-item">🍈 夕張哈密瓜</div>
+          <div class="specialty-item">🦀 螃蟹製品</div>
+          <div class="specialty-item">🌾 薰衣草製品</div>
+          <div class="specialty-item">🍬 北海道牛奶糖</div>
+        </div>
+      </div>
+
+      <div class="prep-item">
+        <h3>📄 證件準備</h3>
+        <p>🚗 本次為自駕行，請具有台灣駕照人員到監理站辦理駕照日文譯本，並攜帶臺灣駕照。</p>
+      </div>
+
+      <div class="prep-item">
+        <h3>💰 現金準備</h3>
+        <p>💳 建議準備 IOS Suica APP 可用信用卡充值<br>
+          📱 日本流行 PayPay，可對應部分台灣行動支付<br>
+          💴 部分超市仍為現金 only，建議攜帶適量現金</p>
+      </div>
+
+      <div class="prep-item">
+        <h3>📶 網路準備</h3>
+        <p>📱 e-sim (KKDay, Klook)<br>
+          📞 台灣大哥大原號漫遊 每日129吃到飽</p>
+      </div>
+
+      <div class="prep-item">
+        <h3>🛂 入境準備</h3>
+        <p>🌐 每人都必須使用 Visit Japan Web 線上辦理入境手續<br>
+          🏨 酒店：GRANDIR HIRAOKA<br>
+          📍 町號：HIRAOKA 3 JO 1-CHOME-15-10</p>
+      </div>
+    </div>
+
+    <!-- Daily Itinerary -->
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(1)">
+        <span>📅 Day 1: 8/17 (日) - 新千歲機場 → 札幌</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day1">
+        <div class="activity">
+          <div class="activity-time">13:30</div>
+          <p>✈️ 落地新千歲機場</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">14:30</div>
+          <p>🚪 出關：2F 大廳有Lawson，取車櫃台聯絡取車</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">15:30</div>
+          <p>🚗 取車</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">15:45</div>
+          <p>🍰 Doremo LeTao (甜點店，買起司蛋糕)<br>
+            <a href="https://maps.app.goo.gl/F8qoXS8Z8CpLhGGH8" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>113 859 183*75</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">16:30</div>
+          <p>🍣 なごやか亭 北野店 (迴轉壽司)<br>
+            <a href="https://maps.app.goo.gl/vwhHqpV8ZAgMF4sQ9" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>9 354 250*86</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">18:00</div>
+          <p>🏠 抵達住宿地 (民宿A: Grandir/ 平岡格蘭迪爾)<br>
+            <a href="https://maps.app.goo.gl/6zFByyFVoj47tvTn9" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>9 324 153*01</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚上</div>
+          <p>🛒 永旺百貨 札幌平岡店 採買 (~23:00)<br>
+            <a href="https://maps.app.goo.gl/9FXB6NQ35EfdMKv68" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>9 295 313*70</strong></span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(2)">
+        <span>📅 Day 2: 8/18 (一) - 支笏湖、白老牛</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day2">
+        <div class="activity">
+          <div class="activity-time">08:30</div>
+          <p>🚗 民宿出發</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">08:40</div>
+          <p>🍞 企鵝麵包北野店 (隔壁有星巴克)<br>
+            <a href="https://maps.app.goo.gl/NC8vRC85QzfTMY6H8" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>9 354 498*14</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">10:30-12:30</div>
+          <p>🏞️ 支笏湖遊客中心 (海底船、鐵橋)<br>
+            <a href="https://maps.app.goo.gl/QgNoa2GVgjUHohs66" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>867 063 387*41</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">14:00-15:00</div>
+          <p>🥩 白老牛燒肉 (天野農場) - 已預約<br>
+            <a href="https://maps.app.goo.gl/55ydQBceqwxo4ebz8" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>545 279 422*36</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">下午行程</div>
+          <p>🐑 羊之丘展望台 (山頂觀景台) - 備選<br>
+            <a href="https://maps.app.goo.gl/NBqT4zeXC9QK4TNb7" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>9 287 533*24</strong></span>
+          </p>
+          <p>🏛️ 北海道開拓紀念館 - 備選<br>
+            <a href="https://maps.app.goo.gl/L3J7QMCfHEkCnG4F6" class="map-link">📍</a>
+            <span class="mapcode">MapCode: <strong>139 150 309*81</strong></span>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚餐</div>
+          <p>🥘 到超商採買簡易食物，回民宿煮和牛壽喜燒</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(3)">
+        <span>📅 Day 3: 8/19 (二) - 室蘭水族館、洞爺湖</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day3">
+        <div class="activity">
+          <div class="activity-time">08:00</div>
+          <p>🚗 民宿出發：順便退房</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">09:00</div>
+          <p>☕ 道之駅 宇多內湖：湖畔休息站，吃個早餐<br>
+            <a href="https://maps.app.goo.gl/LmsXbsNiFFbsGDcG8" class="map-link">📍</a>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">10:30</div>
+          <p>🐠 室蘭水族館 (農堯推薦，大人小孩都愛)<br>
+            <a href="https://maps.app.goo.gl/VSgdsGcVhEiiSkWX9" class="map-link">📍</a>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">15:00</div>
+          <p>🏨 洞爺湖乃之風 Check-in<br>
+            <a href="https://maps.app.goo.gl/YvPWgbtCVp37Sins9" class="map-link">📍</a>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚餐</div>
+          <p>🍽️ 乃之風自助餐</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚上</div>
+          <p>🚢 洞爺湖搭船看煙火</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(4)">
+        <span>📅 Day 4: 8/20 (三) - 洞爺湖 → 小樽 → 札幌</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day4">
+        <div class="activity">
+          <div class="activity-time">08:00</div>
+          <p>🍳 乃之風 早餐</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">10:00</div>
+          <p>🚪 乃之風 check out</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">10:30</div>
+          <p>🍦 Lake Hill Farm 雪糕店<br>
+            <a href="https://maps.app.goo.gl/6KFihDtyyD5krxKZ8" class="map-link">📍</a>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">11:00</div>
+          <p>🏞️ 二選一：<br>
+            🚁 サイロ展望台 (有直升機可以搭)<br>
+            <a href="https://maps.app.goo.gl/SrcVZAvRbqmewx7a7" class="map-link">📍</a><br>
+            或<br>
+            ⛩️ 洞野湖 浮見堂 (農堯推薦，遊客較少)<br>
+            <a href="https://maps.app.goo.gl/9XtewYoBnm8eAbQR6" class="map-link">📍</a>
+          </p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">行車</div>
+          <p>🚗 行車：1小時50分<br>
+            🛑 休息站：道の駅 ニセコビュープラザ、道の駅 あかいがわ (午餐)</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">14:00</div>
+          <p>🏙️ 小樽觀光<br>
+            🍰 甜點：六花亭、北菓樓、北一硝子 三號館<br>
+            🎵 小樽音樂盒堂本館、小樽堺町通商店街、出拔小路<br>
+            🐟 三角市場</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">16:15</div>
+          <p>🚢 小樽運河遊船 (已預約)<br>
+            到售票中心集合 <a href="https://maps.app.goo.gl/wKt3MSKcZBy26GmT8" class="map-link">📍</a></p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚上</div>
+          <p>🏠 札幌市區住宿 (民宿B)<br>
+            🚗 停車：一台停附近20丁目，每日上限1100的停車場<br>
+            🍽️ 晚餐選擇：<br>
+            🛒 大型超市 (Walk 4mins) <a href="https://maps.app.goo.gl/8cEKiVRvYxWzH7Pi7" class="map-link">📍</a><br>
+            🍣 迴轉壽司 Toriton 圓山店 (Walk 9mins) <a href="https://maps.app.goo.gl/wpEpSdQVeHuKjMVy9" class="map-link">📍</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(5)">
+        <span>📅 Day 5: 8/21 (四) - 札幌市區</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day5">
+        <div class="activity">
+          <div class="activity-time">全日</div>
+          <p>🏙️ 札幌市區 (可利用地鐵行動，可各自行動)</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">上午</div>
+          <p>🌳 大通公園<br>
+            📺 札幌電視塔 (是否上塔 optional)</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">下午</div>
+          <p>🍜 拉麵橫丁</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚上</div>
+          <p>🌃 藻岩山夜景</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(6)">
+        <span>📅 Day 6: 8/22 (五) - 札幌市區</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day6">
+        <div class="activity">
+          <div class="activity-time">全日</div>
+          <p>🏙️ 札幌市區 (因需換住宿點，建議一同行動)</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">上午</div>
+          <p>⛩️ 北海道神宮<br>
+            🌸 圓山公園</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">下午</div>
+          <p>🐑 羊之丘展望台<br>
+            🛍️ 貍小路商店街</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">晚餐</div>
+          <p>🍛 湯咖哩 (GARAKU、suage)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(7)">
+        <span>📅 Day 7: 8/23 (六) - 分流日</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day7">
+        <div class="activity">
+          <div class="activity-time">A團行程</div>
+          <p>🇹🇼 A團回台灣：<br>
+            09:00 札幌 Vessel inn 早餐<br>
+            10:30 check-out<br>
+            12:00 加油並還車<br>
+            12:30 接駁到新千歲機場<br>
+            ✈️ 15:00 華航 CI-131 札幌→桃園</p>
+        </div>
+        <div class="activity">
+          <div class="activity-time">B團行程</div>
+          <p>🇯🇵 B團大阪：<br>
+            06:30 札幌 Vessel inn 早餐<br>
+            08:00 check-out<br>
+            09:30 加油並還車<br>
+            10:00 接駁到新千歲機場<br>
+            ✈️ 11:50 日航 JL 2504 札幌→關西<br>
+            🏨 日本橋藝術飯店 Check-in (訂單號碼: 1616323799718460)</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(8)">
+        <span>📅 Day 8: 8/24 (日) - 大阪觀光 (B團)</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day8">
+        <div class="activity">
+          <div class="activity-time">全日</div>
+          <p>🏯 大阪觀光 (B團專屬)<br>
+            🏨 日本橋藝術飯店住宿</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(9)">
+        <span>📅 Day 9: 8/25 (一) - 環球影城 (B團)</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day9">
+        <div class="activity">
+          <div class="activity-time">全日</div>
+          <p>🎢 環球影城 (B團專屬)<br>
+            🏨 日本橋藝術飯店住宿</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="day-section">
+      <div class="day-header" onclick="toggleDay(10)">
+        <span>📅 Day 10: 8/26 (二) - 回台灣 (B團)</span>
+        <span class="toggle-icon">🔽</span>
+      </div>
+      <div class="day-content" id="day10">
+        <div class="activity">
+          <div class="activity-time">全日</div>
+          <p>🇹🇼 B團回台灣：<br>
+            ✈️ 19:05 華航 CI 173 關西→台北</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost Section -->
+    <div class="cost-section">
+      <h2 class="section-title">💰 費用預估</h2>
+
+      <h3>🎌 北海道部分 (每人)</h3>
+      <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px;">
+        <p>✈️ 機票 (平均)：17,000元</p>
+        <p>🏨 北海道住宿：14,000-17,000元</p>
+        <p>🚗 交通分攤：4,500元</p>
+        <p><strong>💸 總預估：36,000-39,000元</strong></p>
+      </div>
+
+      <h3>🏯 大阪部分 (每人) = 12,747元</h3>
+      <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+        <p>✈️ 機票 (札幌-大阪)：5,562元</p>
+        <p>🚌 機場接駁：545元</p>
+        <p>🏨 住宿 3日：4,633元</p>
+        <p>🎢 環球影城：2,007元</p>
+      </div>
+
+      <h3>📊 詳細費用表</h3>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>費用</th>
+            <th>洲</th>
+            <th>池</th>
+            <th>胡</th>
+            <th>齊</th>
+            <th>妮</th>
+            <th>梅</th>
+            <th>儀</th>
+            <th>鈞</th>
+            <th>付款人</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A團機票</td>
+            <td>68,860</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>B團機票(札幌)</td>
+            <td>65,748</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪一梅</td>
+          </tr>
+          <tr>
+            <td>B團機票(大阪)</td>
+            <td>22,248</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪一梅</td>
+          </tr>
+          <tr>
+            <td>平岡格蘭迪爾</td>
+            <td>19,322</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>洞爺湖乃之風(1)</td>
+            <td>32,150</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>洞爺湖乃之風(2)</td>
+            <td>20,604</td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>美黛子之家-15</td>
+            <td>27,020</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>Vessel inn</td>
+            <td>20,739</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪振洲</td>
+          </tr>
+          <tr>
+            <td>日本橋藝術飯店</td>
+            <td>20,712</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪一梅</td>
+          </tr>
+          <tr>
+            <td>環球影城</td>
+            <td>10,035</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>洪一梅</td>
+          </tr>
+          <tr>
+            <td>A團租車Sienta</td>
+            <td>¥89,800</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>B團租車Sienta</td>
+            <td>¥88,800</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>王昱鈞</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align: center; padding: 20px; color: #8b7355; font-style: italic;">
+      <p>🌸 祝大家旅途愉快！ 🗾</p>
+      <p>Safe travels & enjoy your adventure!</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleDay(dayNumber) {
+      const content = document.getElementById('day' + dayNumber);
+      const icon = content.previousElementSibling.querySelector('.toggle-icon');
+
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        icon.classList.remove('rotated');
+      } else {
+        content.classList.add('active');
+        icon.classList.add('rotated');
+      }
+    }
+
+    // Auto-expand Day 1 by default
+    document.addEventListener('DOMContentLoaded', function () {
+      const day1Content = document.getElementById('day1');
+      const day1Icon = day1Content.previousElementSibling.querySelector('.toggle-icon');
+      day1Content.classList.add('active');
+      day1Icon.classList.add('rotated');
+    });
+  </script>
+</body>
+
+</html>
